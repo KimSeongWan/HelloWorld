@@ -16,9 +16,12 @@
 		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
 		<junit.version>4.11</junit.version>
+		
+		<user.encoding>UTF-8</user.encoding>
 	</properties>
 	
 	<build>
+		<!--<defaultGoal>compile</defaultGoal>-->
 		<finalName>HelloWorld</finalName>
 		<plugins>
 			<plugin>
@@ -28,6 +31,15 @@
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
+					<encoding>${user.encoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${user.encoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
