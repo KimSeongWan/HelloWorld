@@ -51,10 +51,9 @@
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
-					<!--<encoding>UTF-8</encoding>-->
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -63,7 +62,6 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			-->
 		</plugins>
 	</build>
 	
