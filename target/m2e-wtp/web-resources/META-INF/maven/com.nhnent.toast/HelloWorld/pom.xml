@@ -25,6 +25,29 @@
 					<plugin>
 						<groupId>com.klocwork.ps</groupId>
 						<artifactId>kwmaven</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<buildspec_filename>klocwork/kwinject.out</buildspec_filename>
+								</configuration>
+								<phase>validate</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!--
+		<profile>
+			<id>klocwork</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.klocwork.ps</groupId>
+						<artifactId>kwmaven</artifactId>
 						<version>2.1.1</version>
 						<configuration>
 							<buildspec_filename>${KWINJECT_OUT_PATH}</buildspec_filename>
@@ -33,7 +56,7 @@
 							<execution>
 								<phase>validate</phase>
 								<goals>
-									<goal>compile</goal>
+									<goal>run</goal>
 								</goals>
 							</execution>
 						</executions>
@@ -41,6 +64,7 @@
 				</plugins>
 			</build>
 		</profile>
+		-->
 	</profiles>
 	
 	<properties>
@@ -93,8 +117,8 @@
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
-					<!--<debug>true</debug>-->
-					<!--<optimize>true</optimize>-->
+					<debug>true</debug>
+					<optimize>true</optimize>
 					<encoding>${build.encoding}</encoding>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
