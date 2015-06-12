@@ -9,6 +9,40 @@
 	<name>HelloWorld Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>thirdparty</id>
+			<name>NHN Entertainment 3rd Party Repository</name>
+			<url>http://repo.nhnent.com/content/repositories/thirdparty</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<profiles>
+		<profile>
+			<id>klocwork</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.klocwork.ps</groupId>
+						<artifactId>kwmaven</artifactId>
+						<version>2.1.1</version>
+						<configuration>
+							<buildspec_filename>${KWINJECT_OUT_PATH}</buildspec_filename>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
 	<properties>
 		<!-- GENERIC -->
 		<jdk.version>1.7</jdk.version>
