@@ -10,40 +10,48 @@
 	<url>http://maven.apache.org</url>
 	
 	<properties>
+		<!-- GENERIC -->
 		<jdk.version>1.7</jdk.version>
 		<springframework.version>3.2.13.RELEASE</springframework.version>
+		<build.encoding>UTF-8</build.encoding>
+		<!--<deploy.path>deploy</deploy.path>-->
+		
+		<!-- WEB -->
 		<servlet.version>3.0.1</servlet.version>
 		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
+		
+		<!-- LOGGING -->
+		<log4j.version>1.2.16</log4j.version>
+		
+		<!-- TEST -->
 		<junit.version>4.11</junit.version>
 	</properties>
 	
 	<build>
 		<!--<defaultGoal>compile</defaultGoal>-->
-		<finalName>HelloWorld</finalName>
+		<finalName>${project.artifactId}</finalName>
+		
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+				<excludes>
+					<exclude>*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+		
 		<plugins>
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
-					<showWarnings>true</showWarnings>
-					<showDeprecation>true</showDeprecation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<configuration>
-					<mainClass>org.test.int1.Main</mainClass>
-				</configuration>
-			</plugin>
-			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -51,16 +59,32 @@
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
-					<encoding>UTF-8</encoding>
+					<!--<debug>true</debug>-->
+					<!--<optimize>true</optimize>-->
+					<encoding>${build.encoding}</encoding>
+					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
-					<encoding>UTF-8</encoding>
+					<encoding>${build.encoding}</encoding>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<!--
+				<configuration>
+					<webappDirectory></webappDirectory>
+					<warSourceDirectory></warSourceDirectory>
+				</configuration>
+				-->
 			</plugin>
 		</plugins>
 	</build>
@@ -104,7 +128,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>${log4j.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>
